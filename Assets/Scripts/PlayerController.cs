@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
     Vector2 velocity;
     Goal goal;
+
+    Vector2 pushVelocity;
+    public float pushDragCoefficient;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,19 +39,36 @@ public class PlayerController : MonoBehaviour
             0,
             gravity
         );
-        if (characterController.velocity.x == 0f) velocity.x = 0f;
+        if (characterController.velocity.x == 0f)
+        {
+            velocity.x = 0f;
+            pushVelocity.x = 0f;
+        }
+        velocity.x = Input.GetAxis("Horizontal") * horizontalSpeed;
         if (characterController.isGrounded)
         {
-            velocity.x = Input.GetAxis("Horizontal") * horizontalSpeed;
             velocity.y = Mathf.Max(velocity.y, 0);
+            pushVelocity.y = Mathf.Max(pushVelocity.y, 0);
             if (Input.GetAxis("Jump") != 0)
+            {
                 velocity.y += jumpSpeed;
-        } else
-        {
-            accelaration.x += Input.GetAxis("Horizontal") * horizontalAirAccelaration;
-            velocity.x = Mathf.Clamp(velocity.x, -maxHorizontalSpeed, maxHorizontalSpeed);
+                pushVelocity.y = 0;
+            }
         }
         velocity += accelaration * Time.deltaTime;
-        characterController.Move(velocity * Time.deltaTime);
+
+        pushVelocity *= Mathf.Exp(-pushDragCoefficient * Time.deltaTime);
+
+        characterController.Move((velocity+pushVelocity) * Time.deltaTime);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        hit.gameObject.TryGetComponent<Scalable>(out Scalable scalable);
+        if (scalable == null) return;
+        float force = scalable.ContactForce;
+        scalable.HasHitPlayer();
+        if (force < pushVelocity.magnitude) return;
+        pushVelocity = hit.normal * force;
     }
 }
