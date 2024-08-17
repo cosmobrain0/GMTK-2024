@@ -1593,6 +1593,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goal
       objectReference: {fileID: 0}
+    - target: {fileID: 4361360217755080248, guid: 925f418dabfe2444ea47e15377438ac3, type: 3}
+      propertyPath: m_Size.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361360217755080248, guid: 925f418dabfe2444ea47e15377438ac3, type: 3}
+      propertyPath: m_Size.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361360217755080248, guid: 925f418dabfe2444ea47e15377438ac3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 61de712bb9634334da4c05e7f260aca4, type: 3}
+    - target: {fileID: 4361360217755080248, guid: 925f418dabfe2444ea47e15377438ac3, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361360217755080248, guid: 925f418dabfe2444ea47e15377438ac3, type: 3}
+      propertyPath: m_SpriteTileMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395478333337717192, guid: 925f418dabfe2444ea47e15377438ac3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395478333337717192, guid: 925f418dabfe2444ea47e15377438ac3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7395478333337717192, guid: 925f418dabfe2444ea47e15377438ac3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.5
