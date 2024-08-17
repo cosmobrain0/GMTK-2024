@@ -49,9 +49,6 @@ public class Scalable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // FIXME: this is temporary testing code
-        if (Input.anyKeyDown) Toggle();
-
         if (transitionStart == null) return;
         DateTime now = DateTime.Now;
         double? percentage = (now - transitionStart)?.TotalMilliseconds / scaleDuration;
