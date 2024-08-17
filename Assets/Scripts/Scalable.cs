@@ -20,7 +20,10 @@ public class Scalable : MonoBehaviour
     public float scaleDuration;
     ScaleState target;
     public DateTime? transitionStart;
-    public float CurrentScale { get => transform.localScale.x; set => transform.localScale = new Vector3(value, value, value); }
+    public float CurrentScale { get => transform.localScale.x; set {
+            transform.localScale = new Vector3(value, value, value);
+            material.SetFloat("_CurrentScale", value);
+        } }
     float scaleWhenStartingTransition;
     public ScaleState Target { get => target; set {
             if (value == target) return;
@@ -30,12 +33,17 @@ public class Scalable : MonoBehaviour
         } }
     float TargetScale { get => (target) switch { ScaleState.Small => smallScale, ScaleState.Large => largeScale }; }
 
+    Material material;
+
     // Start is called before the first frame update
     void Start()
     {
         target = stateOnStart;
-        CurrentScale = TargetScale;
         transitionStart = null;
+        material = GetComponent<Renderer>().material;
+        material.SetFloat("_SmallScale", smallScale);
+        material.SetFloat("_LargeScale", largeScale);
+        CurrentScale = TargetScale;
     }
 
     // Update is called once per frame
