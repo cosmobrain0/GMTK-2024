@@ -48,6 +48,6 @@ public class PlayerController : MonoBehaviour
             velocity.x = Mathf.Clamp(velocity.x, -maxHorizontalSpeed, maxHorizontalSpeed);
         }
         velocity += accelaration * Time.deltaTime;
-        characterController.Move(velocity * Time.deltaTime); 
+        characterController.Move(velocity * Time.deltaTime);
     }
 }
