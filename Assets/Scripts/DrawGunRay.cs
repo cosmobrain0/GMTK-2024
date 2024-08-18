@@ -14,7 +14,7 @@ public class DrawGunRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = transform.TransformDirection(-Vector3.right);
+        Vector3 direction = transform.TransformDirection(Vector3.up);
         RaycastHit hit;
         LayerMask mask = ~LayerMask.GetMask("Ignore Raycast");
         Debug.Log(~mask);

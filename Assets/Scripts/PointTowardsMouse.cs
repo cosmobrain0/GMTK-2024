@@ -20,6 +20,6 @@ public class PointTowardsMouse : MonoBehaviour
         Vector2 position = new Vector2(position3D.x, position3D.y);
         Vector2 offset = position - mouse;
         float angle = Mathf.Atan2(offset.y, offset.x);
-        transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg) * Quaternion.LookRotation(forward);
+        transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg + 90f) * Quaternion.LookRotation(forward);
     }
 }

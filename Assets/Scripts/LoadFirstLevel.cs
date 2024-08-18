@@ -5,18 +5,39 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[Serializable]
+public struct Level
+{
+    public string name;
+    public Button button;
+}
+
 public class LoadFirstLevel : MonoBehaviour
 {
-    public string firstLevelName;
-    public Button button;
+    [SerializeField]
+    public Level[] levels;
+    int currentLevel = 0;
 
     private void Start()
     {
-        button.onClick.AddListener(OnClick);
+        SetLevel(0);
     }
 
     public void OnClick()
     {
-        SceneManager.LoadScene(firstLevelName);
+        Debug.Log($"Loading level {currentLevel}");
+        SceneManager.LoadScene(levels[currentLevel].name);
+    }
+
+    public void SetLevel(int level)
+    {
+        if (level >= 0 && level < levels.Length)
+        {
+            levels[currentLevel].button.GetComponent<Image>().color = Color.grey;
+            currentLevel = level;
+            levels[currentLevel].button.GetComponent<Image>().color = Color.white;
+            Debug.Log($"Set level to {level}");
+        }
+        Debug.Log($"Tried to change level to {level}, but that's invalid!");
     }
 }
