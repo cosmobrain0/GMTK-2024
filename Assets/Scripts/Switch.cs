@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Switch : MonoBehaviour
+public class Switch : StateChanger<bool>
 {
     bool _switchState;
-    public bool State { get => _switchState; }
-    public event EventHandler<bool> OnStateToggle;
+    public override bool State { get => _switchState; }
+    public override event EventHandler<bool> OnStateSwitch;
     Scalable scalable;
     public Renderer switchSensorRenderer;
 
@@ -20,22 +20,22 @@ public class Switch : MonoBehaviour
         {
             if (endState == ScaleState.Large)
             {
-                if (OnStateToggle != null) OnStateToggle(this, true);
+                if (OnStateSwitch != null) OnStateSwitch(this, true);
             }
         };
         scalable.OnTransitionStart += (object sender, ScaleState targetState) =>
         {
             if (_switchState)
             {
-                if (OnStateToggle != null) OnStateToggle(this, false);
+                if (OnStateSwitch != null) OnStateSwitch(this, false);
             }
         };
 
-        OnStateToggle += (object sender, bool currentState) =>
+        OnStateSwitch += (object sender, bool currentState) =>
         {
             _switchState = currentState;
         };
-        OnStateToggle += (object sender, bool currentState) =>
+        OnStateSwitch += (object sender, bool currentState) =>
         {
             if (currentState)
             {

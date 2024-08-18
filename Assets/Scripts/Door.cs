@@ -15,7 +15,7 @@ public class Door : MonoBehaviour
     {
         collider = GetComponent<BoxCollider>();
         renderer = GetComponent<Renderer>();
-        toggleSwitch.OnStateToggle += (object sender, bool currentState) =>
+        toggleSwitch.OnStateSwitch += (object sender, bool currentState) =>
         {
             if (activeAtThisState == currentState)
             {

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class ScaleOnToggle : MonoBehaviour
 {
-    public Switch[] toggleSwitches;
+    [SerializeField]
+    public StateChanger<bool>[] toggles;
     public bool largeAtThisState;
     Scalable scalable;
     bool state;
@@ -15,14 +16,14 @@ public class ScaleOnToggle : MonoBehaviour
     {
         scalable = GetComponent<Scalable>();
         state = false;
-        for (int i=0; i<toggleSwitches.Length; i++)
+        for (int i=0; i<toggles.Length; i++)
         {
-            if (toggleSwitches[i].State) state = !state;
+            if (toggles[i].State) state = !state;
         }
 
-        foreach (var toggleSwitch in toggleSwitches)
+        foreach (var toggleSwitch in toggles)
         {
-            toggleSwitch.OnStateToggle += (object sender, bool currentState) =>
+            toggleSwitch.OnStateSwitch += (object sender, bool currentState) =>
             {
                 state = !state;
                 UpdateState();
