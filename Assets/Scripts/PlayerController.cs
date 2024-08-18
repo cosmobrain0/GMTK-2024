@@ -65,14 +65,4 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y < bottomY) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        hit.gameObject.TryGetComponent<Scalable>(out Scalable scalable);
-        if (scalable == null) return;
-        float force = scalable.ContactForce;
-        scalable.HasHitPlayer();
-        if (force < pushVelocity.magnitude) return;
-        pushVelocity = hit.normal * force;
-    }
 }
