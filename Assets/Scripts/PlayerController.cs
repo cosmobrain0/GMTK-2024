@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = Mathf.Max(velocity.y, 0);
             pushVelocity.y = Mathf.Max(pushVelocity.y, 0);
-            if (Input.GetAxis("Jump") != 0)
+            if (Input.GetAxis("Jump") != 0 || Input.GetAxis("Vertical") > 0)
             {
                 velocity.y += jumpSpeed;
                 pushVelocity.y = 0;

@@ -36,8 +36,6 @@ public class LoadFirstLevel : MonoBehaviour
             levels[currentLevel].button.GetComponent<Image>().color = Color.grey;
             currentLevel = level;
             levels[currentLevel].button.GetComponent<Image>().color = Color.white;
-            Debug.Log($"Set level to {level}");
         }
-        Debug.Log($"Tried to change level to {level}, but that's invalid!");
     }
 }

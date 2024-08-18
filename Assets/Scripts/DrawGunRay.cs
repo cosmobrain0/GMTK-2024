@@ -17,7 +17,6 @@ public class DrawGunRay : MonoBehaviour
         Vector3 direction = transform.TransformDirection(Vector3.up);
         RaycastHit hit;
         LayerMask mask = ~LayerMask.GetMask("Ignore Raycast");
-        Debug.Log(~mask);
         if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity, mask))
         {
             // TODO: Create a LineRenderer

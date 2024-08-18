@@ -31,8 +31,12 @@ public class Scalable : MonoBehaviour
             target = value;
             scaleWhenStartingTransition = CurrentScale;
             transitionStart = DateTime.Now;
+            if (OnTransitionStart != null) OnTransitionStart(this, target);
         } }
     float TargetScale { get => (target) switch { ScaleState.Small => smallScale, ScaleState.Large => largeScale }; }
+
+    public event EventHandler<ScaleState> OnTransitionEnd;
+    public event EventHandler<ScaleState> OnTransitionStart;
 
     Material material;
 
@@ -57,6 +61,7 @@ public class Scalable : MonoBehaviour
         {
             CurrentScale = TargetScale;
             transitionStart = null;
+            if (OnTransitionEnd != null) OnTransitionEnd(this, Target);
             return;
         }
         Func<float, float> ease = x => x * x * (3f - 2f * x);
@@ -87,7 +92,7 @@ public class Scalable : MonoBehaviour
         get {
             DateTime now = DateTime.Now;
             double? percentage = (now - transitionStart)?.TotalMilliseconds / scaleDuration;
-            if (percentage == null || percentage > 1)
+            if (percentage == null || percentage > 1 || Target == ScaleState.Small)
             {
                 return 0f;
             }
