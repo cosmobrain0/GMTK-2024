@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float maxHorizontalSpeed;
     public float gravity;
     public float jumpSpeed;
+    public float bottomY;
     Vector2 velocity;
     Goal goal;
 
@@ -60,6 +62,8 @@ public class PlayerController : MonoBehaviour
         pushVelocity *= Mathf.Exp(-pushDragCoefficient * Time.deltaTime);
 
         characterController.Move((velocity+pushVelocity) * Time.deltaTime);
+
+        if (transform.position.y < bottomY) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

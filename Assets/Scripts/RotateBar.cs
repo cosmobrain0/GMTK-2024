@@ -6,6 +6,8 @@ public class RotateBar : MonoBehaviour
 {
     public Scalable rightEnd;
     public Scalable leftEnd;
+    [Range(0, 0.25f)]
+    public float maxTurns;
 
 
 
@@ -20,7 +22,7 @@ public class RotateBar : MonoBehaviour
     {
         float rightPercentage = PercentageAcross(rightEnd);
         float leftPercentage = PercentageAcross(leftEnd);
-        float rotation = (leftPercentage - rightPercentage) * Mathf.PI / 2f;
+        float rotation = (leftPercentage - rightPercentage) * maxTurns * 2f * Mathf.PI;
         transform.rotation = Quaternion.Euler(0, 0, rotation * Mathf.Rad2Deg);
     }
 

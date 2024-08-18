@@ -277,6 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightEnd: {fileID: 5558052695867118322}
   leftEnd: {fileID: 3201228471789740318}
+  maxTurns: 0.165
 --- !u!1 &8733731002801830128
 GameObject:
   m_ObjectHideFlags: 0

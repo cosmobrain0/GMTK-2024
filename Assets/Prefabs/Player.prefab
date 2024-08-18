@@ -130,6 +130,7 @@ MonoBehaviour:
   maxHorizontalSpeed: 6
   gravity: -10
   jumpSpeed: 6
+  bottomY: -7
   pushDragCoefficient: 0
 --- !u!1 &8719898438918373458
 GameObject:
