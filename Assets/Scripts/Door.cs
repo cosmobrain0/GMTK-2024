@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public Switch toggleSwitch;
+    public StateChanger<bool> toggle;
     public bool activeAtThisState;
-    bool CurrentlyActive { get => toggleSwitch.State == activeAtThisState; }
+    bool CurrentlyActive { get => toggle.State == activeAtThisState; }
     BoxCollider collider;
     Renderer renderer;
 
@@ -15,7 +15,7 @@ public class Door : MonoBehaviour
     {
         collider = GetComponent<BoxCollider>();
         renderer = GetComponent<Renderer>();
-        toggleSwitch.OnStateSwitch += (object sender, bool currentState) =>
+        toggle.OnStateSwitch += (object sender, bool currentState) =>
         {
             if (activeAtThisState == currentState)
             {
