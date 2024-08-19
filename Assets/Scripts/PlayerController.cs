@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public float gravity;
     public float jumpSpeed;
     public float bottomY;
+    public float coyoteTime;
+    DateTime? lastTimeOnGround;
+    bool jumpedSinceLastTimeOnGround;
     Vector2 velocity;
     Goal goal;
 
@@ -23,6 +27,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lastTimeOnGround = null;
+        jumpedSinceLastTimeOnGround = false;
         velocity = Vector2.zero;
         characterController = GetComponent<CharacterController>();
         goal = FindAnyObjectByType<Goal>();
@@ -49,20 +55,35 @@ public class PlayerController : MonoBehaviour
         velocity.x = Input.GetAxis("Horizontal") * horizontalSpeed;
         if (characterController.isGrounded)
         {
+            jumpedSinceLastTimeOnGround = false;
+            lastTimeOnGround = DateTime.Now;
             velocity.y = Mathf.Max(velocity.y, 0);
             pushVelocity.y = Mathf.Max(pushVelocity.y, 0);
+        }
+        velocity += accelaration * Time.deltaTime;
+
+        if (CanJump())
+        {
             if (Input.GetAxis("Jump") != 0 || Input.GetAxis("Vertical") > 0)
             {
-                velocity.y += jumpSpeed;
+                jumpedSinceLastTimeOnGround = true;
+                velocity.y = jumpSpeed;
                 pushVelocity.y = 0;
             }
         }
-        velocity += accelaration * Time.deltaTime;
 
         pushVelocity *= Mathf.Exp(-pushDragCoefficient * Time.deltaTime);
 
         characterController.Move((velocity+pushVelocity) * Time.deltaTime);
 
         if (transform.position.y < bottomY) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private bool CanJump()
+    {
+        return !jumpedSinceLastTimeOnGround && (
+                characterController.isGrounded ||
+                (lastTimeOnGround != null && (DateTime.Now - lastTimeOnGround)?.TotalMilliseconds < coyoteTime)
+            );
     }
 }
