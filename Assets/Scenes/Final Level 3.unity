@@ -122,6 +122,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &36065873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8719898438918373458, guid: ab45b8490a2414d4a8ffa29371eeeb3e, type: 3}
+  m_PrefabInstance: {fileID: 1047025526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &36065879
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36065873}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5000004, y: 1.5800003, z: 2.4999998}
+  m_Center: {x: 1.4999994, y: 5.53, z: 0.62499994}
 --- !u!1001 &44427609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2219,6 +2245,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8106948818146303565, guid: 925f418dabfe2444ea47e15377438ac3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2356,10 +2386,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 401274401091815315, guid: ab45b8490a2414d4a8ffa29371eeeb3e, type: 3}
-      propertyPath: pushDragCoefficient
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 1560939358310675684, guid: ab45b8490a2414d4a8ffa29371eeeb3e, type: 3}
       propertyPath: camera
       value: 
@@ -2412,10 +2438,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8719898438918373458, guid: ab45b8490a2414d4a8ffa29371eeeb3e, type: 3}
+      propertyPath: m_TagString
+      value: Respawn
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8719898438918373458, guid: ab45b8490a2414d4a8ffa29371eeeb3e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 36065879}
   m_SourcePrefab: {fileID: 100100000, guid: ab45b8490a2414d4a8ffa29371eeeb3e, type: 3}
 --- !u!1001 &1071106870
 PrefabInstance:

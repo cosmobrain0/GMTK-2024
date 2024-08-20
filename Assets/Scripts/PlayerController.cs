@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
     public float bottomY;
     public float coyoteTime;
+    public float crushDetectionDistance;
+    public float teleportDistance;
+    Vector3 previousPosition;
     DateTime? lastTimeOnGround;
     bool jumpedSinceLastTimeOnGround;
     Vector2 velocity;
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        previousPosition = transform.position;
         lastTimeOnGround = null;
         jumpedSinceLastTimeOnGround = false;
         velocity = Vector2.zero;
@@ -42,6 +46,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (goal.LevelCompleted) return;
+        if ((transform.position-previousPosition).magnitude >= teleportDistance)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        previousPosition = transform.position;
 
         Vector2 accelaration = new Vector2(
             0,
@@ -77,6 +86,19 @@ public class PlayerController : MonoBehaviour
         characterController.Move((velocity+pushVelocity) * Time.deltaTime);
 
         if (transform.position.y < bottomY) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        else
+        {
+            Vector3[] directions = { Vector3.right, Vector3.up, Vector3.left, Vector3.down };
+
+            for (int i=0; i<directions.Length; i++)
+            {
+                if (Physics.Raycast(transform.position, directions[i], crushDetectionDistance, ~12))
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }
+            }
+
+        }
     }
 
     private bool CanJump()
