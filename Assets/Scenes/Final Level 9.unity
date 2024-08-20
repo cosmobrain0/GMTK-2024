@@ -5196,6 +5196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scalable Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 2956686676852821405, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3554169685860901582, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
       propertyPath: largeScale
       value: 2

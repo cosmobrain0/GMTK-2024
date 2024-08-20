@@ -201,6 +201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scalable Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 3206547207245650949, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
+      propertyPath: scaleCoefficient
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3554169685860901582, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
       propertyPath: smallScale
       value: 0.4
