@@ -4654,6 +4654,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 401274401091815315, guid: ab45b8490a2414d4a8ffa29371eeeb3e, type: 3}
+      propertyPath: teleportDistance
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1560939358310675684, guid: ab45b8490a2414d4a8ffa29371eeeb3e, type: 3}
       propertyPath: camera
       value: 
