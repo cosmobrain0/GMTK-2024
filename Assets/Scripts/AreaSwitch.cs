@@ -14,7 +14,15 @@ public class AreaSwitch : StateChanger<bool>
     private void Start()
     {
         renderer = GetComponent<Renderer>();
+        renderer.material.SetFloat("_TriggerTime", -100);
         SetState(collidersInside > 0);
+        OnStateSwitch += (object sender, bool currentState) =>
+        {
+            if (currentState)
+            {
+                renderer.material.SetFloat("_TriggerTime", Time.time);
+            }
+        };
     }
 
     void SetState(bool newState)
