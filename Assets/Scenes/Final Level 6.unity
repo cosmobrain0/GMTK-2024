@@ -201,6 +201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scalable Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 3206547207245650949, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
+      propertyPath: scaleCoefficient
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3554169685860901582, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
       propertyPath: smallScale
       value: 0.4
@@ -4287,7 +4291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Timers stay active for some time until you leave.
+  m_text: Timers stay active for some time after you leave.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4487,7 +4491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7702626640008779617, guid: 1eed696c75603e54e9c249c0717dba8f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7702626640008779617, guid: 1eed696c75603e54e9c249c0717dba8f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4523,7 +4527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7702626640008779617, guid: 1eed696c75603e54e9c249c0717dba8f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 490
+      value: 485
       objectReference: {fileID: 0}
     - target: {fileID: 7702626640008779617, guid: 1eed696c75603e54e9c249c0717dba8f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

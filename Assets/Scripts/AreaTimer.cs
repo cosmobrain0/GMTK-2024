@@ -20,6 +20,12 @@ public class AreaTimer : StateChanger<bool>
     {
         renderer = GetComponent<Renderer>();
         timerStart = null;
+        renderer.material.SetFloat("_TriggerDuration", timerDuration / 1000f);
+        renderer.material.SetFloat("_TriggerTime", -100);
+        OnStateSwitch += (object sender, bool currentState) =>
+        {
+            if (currentState) renderer.material.SetFloat("_TriggerTime", Time.timeSinceLevelLoad);
+        };
     }
 
     private void Update()
@@ -30,12 +36,12 @@ public class AreaTimer : StateChanger<bool>
             timerStart = DateTime.Now;
             if (justSwitched) OnStateSwitch?.Invoke(this, true);
         }
-        if ((DateTime.Now-timerStart)?.TotalMilliseconds > timerDuration)
+        if (timerStart != null && (DateTime.Now-timerStart)?.TotalMilliseconds > timerDuration)
         {
             timerStart = null;
             OnStateSwitch?.Invoke(this, false);
         }
-        renderer.material.SetFloat("_Progress", timerStart == null ? 0f : 1f - (float)((DateTime.Now - timerStart)?.TotalMilliseconds) / timerDuration);
+        renderer.material.SetFloat("_Progress", timerStart == null ? -1f : (float)((DateTime.Now - timerStart)?.TotalMilliseconds) / timerDuration);
     }
 
     private void OnTriggerEnter(Collider other)

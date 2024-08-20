@@ -2466,7 +2466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7702626640008779617, guid: 1eed696c75603e54e9c249c0717dba8f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7702626640008779617, guid: 1eed696c75603e54e9c249c0717dba8f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2502,7 +2502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7702626640008779617, guid: 1eed696c75603e54e9c249c0717dba8f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 490
+      value: 485
       objectReference: {fileID: 0}
     - target: {fileID: 7702626640008779617, guid: 1eed696c75603e54e9c249c0717dba8f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5195,6 +5195,10 @@ PrefabInstance:
     - target: {fileID: 1466343111193775125, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
       propertyPath: m_Name
       value: Scalable Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956686676852821405, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3554169685860901582, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
       propertyPath: largeScale

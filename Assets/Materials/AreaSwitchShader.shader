@@ -8,6 +8,8 @@ Shader "Custom/AreaSwitchShader"
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
         _State ("State", Range(0,1)) = 0.0
+        _TriggerTime ("Trigger Time", Float) = 0.0
+        _TriggerDuration ("Trigger Duration", Float) = 0.0
     }
     SubShader
     {
@@ -24,6 +26,7 @@ Shader "Custom/AreaSwitchShader"
         sampler2D _MainTex;
         float _State;
         float4 _NormalColour, _TriggeredColour;
+        float _TriggerTime, _TriggerDuration;
 
         struct Input
         {
@@ -43,13 +46,19 @@ Shader "Custom/AreaSwitchShader"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
+            float state = saturate((_Time.y - _TriggerTime)/_TriggerDuration);
+            state = state*state*(3-2*state);
+            state *= _State;
+
+            float d = lerp(0.2, 1, state);
+            float distance = saturate(length((IN.uv_MainTex-0.5)*d));
             // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * lerp(_NormalColour, _TriggeredColour, _State);
+            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * lerp(_NormalColour, _TriggeredColour, state);
             o.Albedo = c.rgb;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
-            o.Alpha = lerp(_NormalColour.a, _TriggeredColour.a, _State);
+            o.Alpha = lerp(0.2, lerp(_NormalColour.a, _TriggeredColour.a, state)*state, distance);
         }
         ENDCG
     }

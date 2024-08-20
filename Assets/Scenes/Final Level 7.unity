@@ -201,6 +201,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scalable Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 2956686676852821405, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3206547207245650949, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
+      propertyPath: scalable
+      value: 
+      objectReference: {fileID: 128780376}
     - target: {fileID: 3554169685860901582, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
       propertyPath: smallScale
       value: 0.4
@@ -482,6 +490,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54880b6d7a619b146b0e6d394954f90f, type: 3}
+--- !u!114 &128780376 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3554169685860901582, guid: 0f10debc8d917424d8007fb7c2653d1f, type: 3}
+  m_PrefabInstance: {fileID: 49694084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d403c0aa6c47b4428c16034cda5c084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &196258189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4758428202461294743, guid: 54880b6d7a619b146b0e6d394954f90f, type: 3}
@@ -4627,7 +4646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7702626640008779617, guid: 1eed696c75603e54e9c249c0717dba8f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7702626640008779617, guid: 1eed696c75603e54e9c249c0717dba8f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4663,7 +4682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7702626640008779617, guid: 1eed696c75603e54e9c249c0717dba8f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 490
+      value: 485
       objectReference: {fileID: 0}
     - target: {fileID: 7702626640008779617, guid: 1eed696c75603e54e9c249c0717dba8f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
