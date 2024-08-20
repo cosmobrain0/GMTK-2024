@@ -43,13 +43,15 @@ Shader "Custom/AreaSwitchShader"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
+            float d = lerp(0.2, 100, _State);
+            float distance = saturate(length((IN.uv_MainTex-0.5)*d));
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * lerp(_NormalColour, _TriggeredColour, _State);
             o.Albedo = c.rgb;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
-            o.Alpha = lerp(_NormalColour.a, _TriggeredColour.a, _State);
+            o.Alpha = lerp(0, lerp(_NormalColour.a, _TriggeredColour.a, _State), distance);
         }
         ENDCG
     }

@@ -44,13 +44,14 @@ Shader "Custom/AreaTimerShader"
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             float radius = sqrt(2)/2 * _Progress;
+            float distance = length(IN.uv_MainTex-0.5);
             // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * lerp(_NormalColour, _TriggeredColour, float(length(IN.uv_MainTex-0.5) < radius));
+            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * lerp(_NormalColour, _TriggeredColour, float(distance < radius));
             o.Albedo = c.rgb;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
-            o.Alpha = c.a;
+            o.Alpha = c.a * float(distance < 0.5);
         }
         ENDCG
     }
