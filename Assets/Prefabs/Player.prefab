@@ -131,7 +131,10 @@ MonoBehaviour:
   gravity: -10
   jumpSpeed: 6
   bottomY: -7
-  pushDragCoefficient: 0
+  coyoteTime: 100
+  crushDetectionDistance: 0.4
+  teleportDistance: 0.4
+  pushDragCoefficient: 0.8
 --- !u!1 &8719898438918373458
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,9 +148,10 @@ GameObject:
   - component: {fileID: 7427200060059560965}
   - component: {fileID: 6844363053330739008}
   - component: {fileID: 5524425589439958670}
+  - component: {fileID: 3224946830355036836}
   m_Layer: 2
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99e7218daf7b6146b1f6dfd4c077bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingCasts: 0
 --- !u!120 &6844363053330739008
 LineRenderer:
   serializedVersion: 2
@@ -349,3 +354,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &3224946830355036836
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8719898438918373458}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5000004, y: 1.5800003, z: 2.4999998}
+  m_Center: {x: -4.695001, y: 11.455001, z: 0.62499994}

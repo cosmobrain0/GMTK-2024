@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
-    public Switch toggleSwitch;
+    public StateChanger<bool> toggle;
     public bool activeAtThisState;
-    bool CurrentlyActive { get => toggleSwitch.State == activeAtThisState; }
+    bool CurrentlyActive { get => toggle.State == activeAtThisState; }
     BoxCollider collider;
     Renderer renderer;
 
@@ -15,7 +17,7 @@ public class Door : MonoBehaviour
     {
         collider = GetComponent<BoxCollider>();
         renderer = GetComponent<Renderer>();
-        toggleSwitch.OnStateSwitch += (object sender, bool currentState) =>
+        toggle.OnStateSwitch += (object sender, bool currentState) =>
         {
             if (activeAtThisState == currentState)
             {
@@ -28,5 +30,15 @@ public class Door : MonoBehaviour
                 renderer.material.color = new Color(1, 1, 1, 0.4f);
             }
         };
+    }
+
+    private void Update()
+    {
+        // FIXME: removed a line
+        // if (collider.enabled && Physics.OverlapBox(transform.position, transform.lossyScale, transform.rotation, 4).Any(x => x.CompareTag("Respawn")))
+        if (false)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }

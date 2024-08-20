@@ -9,27 +9,48 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 66fff21247c413549b1888b0bf4608bb
   - enabled: 1
-    path: Assets/Scenes/GameComplete.unity
-    guid: 8ca2d6b485d4e3c419ef8f9e35a5e8db
-  - enabled: 1
-    path: Assets/Scenes/Level0.unity
+    path: Assets/Scenes/Final Level 1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
+    path: Assets/Scenes/Final Level 2.unity
     guid: 614645af2cc43cd4d8282678bf4c03e6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level2.unity
     guid: c8779719fbaff7648b9ff65b9dc3ca6d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level3.unity
     guid: eeaa49d4c1abadd4689155a70f8ba3c2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level4.unity
     guid: 2e85ac52e0ba1684db01bc9cd9b7f415
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level5.unity
     guid: 2bbf6edfe7f84eb40958fbfd6a8bc94a
   - enabled: 1
-    path: Assets/Scenes/Level6.unity
+    path: Assets/Scenes/Final Level 3.unity
+    guid: 26a677b2c975b27418e90208038ae060
+  - enabled: 1
+    path: Assets/Scenes/Final Level 4.unity
     guid: 542aef92fa5326243955b721cf5ff3a7
+  - enabled: 1
+    path: Assets/Scenes/Final Level 5.unity
+    guid: f41bbdd31ccee2f4a9f89f318c671edb
+  - enabled: 1
+    path: Assets/Scenes/Final Level 6.unity
+    guid: 2213754557c14864080c830f1a457fe3
+  - enabled: 1
+    path: Assets/Scenes/Final Level 7.unity
+    guid: bd42ff802504c514ab44705b14d793b1
+  - enabled: 1
+    path: Assets/Scenes/Final Level 8.unity
+    guid: 6fbb24aa61628e54cab2039a424b6c72
+  - enabled: 0
+    path: Assets/Scenes/Level8.unity
+    guid: 38a669596a2b9bc45a5f22e202f2d0d0
+  - enabled: 1
+    path: Assets/Scenes/Final Level 9.unity
+    guid: b99998b54cf5b8241995299defb82e46
+  - enabled: 1
+    path: Assets/Scenes/GameComplete.unity
+    guid: 8ca2d6b485d4e3c419ef8f9e35a5e8db
   m_configObjects: {}

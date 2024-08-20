@@ -80,23 +80,4 @@ public class Scalable : MonoBehaviour
     {
         Target = (Target) switch { ScaleState.Small => ScaleState.Large, ScaleState.Large => ScaleState.Small };
     }
-
-    public void HasHitPlayer()
-    {
-        if (Target == ScaleState.Large && transitionStart != null) Target = ScaleState.Small;
-    }
-
-    // FIXME: this is bad
-    public float ContactForce
-    {
-        get {
-            DateTime now = DateTime.Now;
-            double? percentage = (now - transitionStart)?.TotalMilliseconds / scaleDuration;
-            if (percentage == null || percentage > 1 || Target == ScaleState.Small)
-            {
-                return 0f;
-            }
-            return ScaleGradient((float)percentage) * contactForceCoefficient;
-        }
-    }
 }

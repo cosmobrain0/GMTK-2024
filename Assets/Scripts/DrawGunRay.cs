@@ -6,10 +6,15 @@ public class DrawGunRay : MonoBehaviour
 {
     // Start is called before the first frame update
     LineRenderer lineRenderer;
+    public int startingCasts;
+    int casts;
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        casts = startingCasts;
     }
+
+    public bool CanShootScalable(Scalable scalable) => casts > 0 || scalable.stateOnStart == scalable.Target;
 
     // Update is called once per frame
     void Update()
@@ -25,8 +30,30 @@ public class DrawGunRay : MonoBehaviour
             hit.collider.gameObject.TryGetComponent(out Scalable scalable);
             if (scalable != null)
             {
-                if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Q)) scalable.Toggle();
-                lineRenderer.startColor = lineRenderer.endColor = new Color(1, 1, 1, 1);
+                bool shootingAnotherCast = scalable.stateOnStart == scalable.Target;
+                bool mouseDown = Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Q);
+                if (shootingAnotherCast)
+                {
+                    if (casts > 0)
+                    {
+                        if (mouseDown)
+                        {
+                            scalable.Toggle();
+                            casts--;
+                        }
+                        lineRenderer.startColor = lineRenderer.endColor = new Color(1, 1, 1, 1);
+                    }
+                    else lineRenderer.startColor = lineRenderer.endColor = new Color(1, 0, 0, 1);
+                }
+                else
+                {
+                    if (mouseDown)
+                    {
+                        casts++;
+                        scalable.Toggle();
+                    }
+                    lineRenderer.startColor = lineRenderer.endColor = new Color(0, 1, 0, 1);
+                }
             }
         } else
         {
