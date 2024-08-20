@@ -8,6 +8,8 @@ Shader "Custom/AreaTimerShader"
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
         _Progress ("Progress", Range(0,1)) = 0.0
+        _TriggerTime ("Trigger Time", Float) = 0.0
+        _TriggerDuration ("Trigger Duration", Float) = 0.0
     }
     SubShader
     {
@@ -24,6 +26,7 @@ Shader "Custom/AreaTimerShader"
         sampler2D _MainTex;
         float _Progress;
         float4 _NormalColour, _TriggeredColour;
+        float _TriggerTime, _TriggerDuration;
 
         struct Input
         {
@@ -41,9 +44,25 @@ Shader "Custom/AreaTimerShader"
             // put more per-instance properties here
         UNITY_INSTANCING_BUFFER_END(Props)
 
+        float ease(float t)
+        {
+            t = 1 - t;
+            t = 1 - t*t*t*t;
+            t = sin(3.1415926 * t);
+            return t;
+        }
+
+        float smoothstep(float t)
+        {
+            return t*t*(3-2*t);
+        }
+
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            float radius = sqrt(2)/2 * _Progress;
+            float state = smoothstep(saturate((_Time.y-_TriggerTime)/(_TriggerDuration/10))) * (1.0 - _Progress);
+            state = lerp(state, 0, float(_Progress < 0));
+
+            float radius = sqrt(2)/2 * state;
             float distance = length(IN.uv_MainTex-0.5);
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * lerp(_NormalColour, _TriggeredColour, float(distance < radius));

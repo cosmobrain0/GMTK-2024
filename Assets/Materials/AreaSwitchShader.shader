@@ -46,12 +46,6 @@ Shader "Custom/AreaSwitchShader"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            // all of this is meant for the AreaTimerShader - whoops
-            // float state = _State * (_Time.y - _TriggerTime)/_TriggerDuration;
-            // state = 1 - state;
-            // state = 1 - state*state*state*state;
-            // state = sin(3.1415926 * state);
-
             float state = saturate((_Time.y - _TriggerTime)/_TriggerDuration);
             state = state*state*(3-2*state);
             state *= _State;
