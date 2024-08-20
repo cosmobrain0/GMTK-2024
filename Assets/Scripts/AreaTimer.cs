@@ -24,7 +24,7 @@ public class AreaTimer : StateChanger<bool>
         renderer.material.SetFloat("_TriggerTime", -100);
         OnStateSwitch += (object sender, bool currentState) =>
         {
-            if (currentState) renderer.material.SetFloat("_TriggerTime", Time.time);
+            if (currentState) renderer.material.SetFloat("_TriggerTime", Time.timeSinceLevelLoad);
         };
     }
 

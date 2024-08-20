@@ -20,7 +20,7 @@ public class AreaSwitch : StateChanger<bool>
         {
             if (currentState)
             {
-                renderer.material.SetFloat("_TriggerTime", Time.time);
+                renderer.material.SetFloat("_TriggerTime", Time.timeSinceLevelLoad);
             }
         };
     }
