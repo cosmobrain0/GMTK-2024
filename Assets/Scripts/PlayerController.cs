@@ -58,6 +58,10 @@ public class PlayerController : MonoBehaviour
 
     Vector2 pushVelocity;
     public float pushDragCoefficient;
+    public float timeAfterLevelComplete;
+    float timeOfLevelComplete = -1;
+    public float stompStrength;
+    Vector3 positionAtLevelComplete;
 
     // Start is called before the first frame update
     void Start()
@@ -71,19 +75,39 @@ public class PlayerController : MonoBehaviour
         goal = FindAnyObjectByType<Goal>();
         goal.OnLevelComplete += (object sender, EventArgs e) =>
         {
-            Debug.Log("Yaaaaay!");
+            timeOfLevelComplete = Time.time;
+            positionAtLevelComplete = transform.position;
+            GetComponent<CharacterController>().enabled = false;
         };
 
         groundInfo = new CurrentGroundInfo(CurrentGroundInfo.FindGround(transform.position, transform.lossyScale.x/2f));
     }
 
+    float Smoothstep(float t)
+    {
+        return t * t * (3 - 2 * t);
+    }
+
+    float EaseInOutCubic(float t)
+    {
+        // this should prob be something logarithmic instead
+        t = Mathf.Log(t + 1, 2);
+        return t;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (goal.LevelCompleted) return;
+        if (goal.LevelCompleted)
+        {
+            float p = Mathf.Clamp01((Time.time - timeOfLevelComplete) / timeAfterLevelComplete);
+            transform.position = Vector3.Lerp(positionAtLevelComplete, goal.transform.position, Smoothstep(p));
+            float scale = 1f - EaseInOutCubic(p);
+            transform.localScale = new Vector3(scale, scale, scale) * 0.65f;
+            return;
+        }
         if ((transform.position-previousPosition).magnitude >= teleportDistance)
         {
-            Debug.Log("This is causing a respawn!");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         previousPosition = transform.position;
@@ -101,7 +125,7 @@ public class PlayerController : MonoBehaviour
         velocity += accelaration * Time.deltaTime;
         if (characterController.isGrounded)
         {
-            GameObject? currentGround = CurrentGroundInfo.FindGround(transform.position, transform.lossyScale.x/2f);
+            GameObject? currentGround = CurrentGroundInfo.FindGround(transform.position, transform.lossyScale.x / 2f);
             if (currentGround != null)
             {
                 if (currentGround == groundInfo.ground)
@@ -121,7 +145,15 @@ public class PlayerController : MonoBehaviour
             velocity.y = Mathf.Max(velocity.y, -0.1f);
             pushVelocity.y = Mathf.Max(pushVelocity.y, 0);
         }
-        else groundInfo.ground = null;
+        else
+        {
+            groundInfo.ground = null;
+            if (Input.GetAxis("Vertical") < 0)
+            {
+                velocity.y = stompStrength;
+                velocity.x = 0;
+            }
+        }
 
         if (CanJump())
         {

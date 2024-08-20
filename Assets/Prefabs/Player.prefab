@@ -133,8 +133,10 @@ MonoBehaviour:
   bottomY: -7
   coyoteTime: 100
   crushDetectionDistance: 0.4
-  teleportDistance: 0.4
+  teleportDistance: 0.6
   pushDragCoefficient: 0.8
+  timeAfterLevelComplete: 2
+  stompStrength: -30
 --- !u!1 &8719898438918373458
 GameObject:
   m_ObjectHideFlags: 0

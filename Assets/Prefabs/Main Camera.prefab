@@ -105,4 +105,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad0e9b43b1b9914e8cf1866a188ece0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevelName: Level1
+  nextLevelName: Final Level 2
+  minTimeBetweenLevelLoads: 2
